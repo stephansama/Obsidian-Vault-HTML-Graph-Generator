@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "types": ["d3"],
+    "outDir": "dist/client",
+    "rootDir": "src/client",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": false,
+    "sourceMap": false
+  },
+  "include": ["src/client/**/*"]
+}

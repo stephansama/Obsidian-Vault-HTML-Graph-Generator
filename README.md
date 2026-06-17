@@ -1,46 +1,52 @@
 # Obsidian-Vault-HTML-Graph-Generator
 
+Generate an interactive, offline-ready D3 graph view of your Obsidian vault as a single HTML file.
+
 ## Important Information
 
-**Current Limitations**: At present, the graph only supports Obsidian's graph view #tag filters and colors. Any other filters set in Obsidian's graph view will be ignored. This tool only generates the graph view; note contents will not be accessible from the graph.
+**Current Limitations**: At present, the graph only supports Obsidian's graph view `#tag` filters and colors. Any other filters set in Obsidian's graph view will be ignored. This tool only generates the graph view; note contents will not be accessible from the graph.
 
 ## Overview
 
-The Obsidian-Vault-HTML-Graph-Generator is a tool designed to transform your Obsidian vault into an interactive HTML graph view, making it easier to share and visualize your notes and connections in a web browser. This tool is ideal for both tech-savvy users and those who prefer a simple, executable solution.
+The Obsidian-Vault-HTML-Graph-Generator walks an Obsidian vault, extracts the links between notes (`[[wikilinks]]`, markdown links, and `![[embeds]]`), reads color groups from the vault's `.obsidian/graph.json`, and writes a self-contained HTML file. D3 is inlined into the output, so the HTML is fully portable — share it, host it, or open it directly from disk with no network access.
 
 ## Features
 
-- **Interactive HTML Graph**: Generates a visual representation of your Obsidian notes and their links.
-- **User-Friendly Interface**: Simple GUI for selecting the vault and output directories.
-- **Compatibility**: Supports Obsidian's graph view #tag filters and colors.
-- **Portability**: Easily share the generated HTML file with anyone.
+- **Interactive HTML Graph**: D3 force-directed graph with zoom, pan, drag, and label collision.
+- **Offline-ready**: D3 is bundled into the output; the file works without an internet connection.
+- **Obsidian color groups**: Honors `.obsidian/graph.json` `colorGroups`.
+- **Catppuccin Mocha** theme for the rendered HTML.
+- **CLI**: Two flags, `--directory` and `--output`.
 
 ## Usage
 
-### For Non-Tech Savvy Users
+Requires Node.js ≥ 20 and pnpm.
 
-Note: The antivirus **will** throw a check for the executable file, I don't have any way of avoiding this **AND** making it easier for non tech savvy people. Sorry.
+```sh
+pnpm install
+pnpm dev -- --directory /path/to/vault --output /path/to/output-dir
+```
 
-1. **Download and Run**: Download the provided [executable file](https://github.com/Hellyom/Obsidian-Vault-HTML-Graph-Generator/blob/main/Obsidian-Vault-HTML-Graph-Generator.exe) and run it. Follow the on-screen instructions to select your Obsidian vault and output directory.
+Or build a distributable JS bundle:
 
-### For Python Users
+```sh
+pnpm build
+node dist/index.js --directory /path/to/vault --output /path/to/output-dir
+```
 
-1. **Download the Script**: Clone the repository to get the `Obsidian-Vault-HTML-Graph-Generator.py` file.
-2. **Run the Script**: Execute the script using Python. Make sure you have the necessary Python dependencies installed (e.g., `tkinter`, `markdown`, `json`, `re`, `defaultdict`).
+The generated file lands at `<output>/vault_graph.html`.
 
-    ```sh
-    python Obsidian-Vault-HTML-Graph-Generator.py
-    ```
+### Flags
+
+| Flag                   | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| `-d, --directory <dir>` | Path to the Obsidian vault directory                |
+| `-o, --output <dir>`    | Directory to write `vault_graph.html` into          |
 
 ## Contribution
 
-We welcome contributions from the community. Feel free to submit pull requests or report issues to help improve this project.
+Pull requests and issues are welcome.
 
 ## Support
 
-If you find this tool useful and would like to support its development, consider supporting the project [here](https://buymeacoffee.com/oscarch).
-
-## Notes
-
-- **Code Quality**: "Yes, it's messy. Yes, it's only one file, but I was in a hurry. There's a better way to structure this, but who cares, right?"
-- **Future Plans**: Currently, there are no plans to make this an Obsidian plugin, I'm pretty sure something like this has been already developed as a plugin. 
+The original Python implementation was authored by [oscarch](https://buymeacoffee.com/oscarch). If you find this tool useful, consider supporting the original author.

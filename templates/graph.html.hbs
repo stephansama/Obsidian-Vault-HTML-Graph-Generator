@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Obsidian Vault Graph</title>
+	<style>
+		:root {
+			--ctp-base: #1e1e2e;
+			--ctp-text: #cdd6f4;
+			--ctp-overlay0: #6c7086;
+			--ctp-surface0: #313244;
+		}
+		html, body { margin: 0; padding: 0; height: 100%; }
+		body {
+			background-color: var(--ctp-base);
+			overflow: hidden;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+		}
+		.link { stroke: var(--ctp-overlay0); stroke-opacity: 0.6; }
+		.node { cursor: move; }
+		text {
+			font-size: 12px;
+			pointer-events: none;
+			fill: var(--ctp-text);
+		}
+		svg { width: 100vw; height: 100vh; display: block; }
+	</style>
+</head>
+<body>
+	<div id="graph"></div>
+	<script>{{{d3Source}}}</script>
+	<script>{{{clientScript}}}</script>
+	<script>
+		window.bootGraph({
+			nodes: {{{nodesJson}}},
+			edges: {{{edgesJson}}},
+			colorGroups: {{{colorGroupsJson}}}
+		});
+	</script>
+</body>
+</html>

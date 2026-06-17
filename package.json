@@ -1,0 +1,35 @@
+{
+  "name": "obsidian-vault-html-graph-generator",
+  "version": "0.2.0",
+  "description": "Generate an interactive, offline-ready D3 graph view of an Obsidian vault as a single HTML file.",
+  "type": "module",
+  "bin": {
+    "obsidian-graph": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build:client": "tsc -p tsconfig.browser.json",
+    "build:server": "tsc -p tsconfig.json",
+    "build": "pnpm build:client && pnpm build:server",
+    "dev": "pnpm build:client && tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cleye": "^1.3.4",
+    "d3": "^7.9.0",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
